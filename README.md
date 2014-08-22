@@ -1,4 +1,4 @@
 desktop-sublime-syntax
 ======================
 
-Sublime syntax highlighter for .desktop files.
+A simple Sublime syntax highlighter for .desktop files.
