@@ -1,0 +1,61 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Desktop
+scopeName: text.desktop
+fileTypes: [desktop]
+uuid: 9913fda1-955e-41cf-9f68-8d29461cf722
+
+patterns:
+- include: '#comments'
+
+- comment: Required on the first line, Gnome.
+  name: keyword.control.desktop
+  match: (\[Desktop Entry\])
+
+- comment: Keys, Gnome.
+  name: keyword.other.desktop
+  match: (((Encoding|Type|Version|NoDisplay|Hidden|OnlyShowIn|NotShowIn|DBusActivatable|TryExec|Exec|Path|Terminal|Actions|MimeType|Categories|StartupNotify|StartupWMClass|URL|X-(\w|-)+))|((Name|GenericName|Comment|Icon|Keywords)(\[(\w)+(@\w+)?\])?))( |\t)*(=)
+  captures:
+    '2': {name: storage.type.desktop}
+    '6': {name: storage.type.desktop}
+    '7': {name: string.unquoted.desktop}
+    '12': {name: constant.numeric.desktop}
+
+repository:
+  # below taken from github.com/xanxys/sublime-thrift
+  # thanks xanxys!
+  comments:
+    patterns:
+    - begin: (^[ \t]+)?(?=#)
+      beginCaptures:
+        '1': {name: punctuation.whitespace.comment.leading.desktop}
+      end: (?!\G)
+      patterns:
+      - name: comment.line.number-sign.desktop
+        begin: '#'
+        beginCaptures:
+          '0': {name: punctuation.definition.comment.desktop}
+        end: $
+    - begin: (^[ \t]+)?(?=//)
+      beginCaptures:
+        '1': {name: punctuation.whitespace.comment.leading.desktop}
+      end: (?!\G)
+      patterns:
+      - name: comment.line.double-slash.desktop
+        begin: //
+        beginCaptures:
+          '0': {name: punctuation.definition.comment.desktop}
+        end: $
+    - name: comment.block.documentation.desktop
+      begin: /\*\*
+      beginCaptures:
+        '0': {name: punctuation.definition.comment.begin.desktop}
+      end: \*/
+      endCaptures:
+        '0': {name: punctuation.definition.comment.end.desktop}
+    - name: comment.block.desktop
+      begin: /\*
+      beginCaptures:
+        '0': {name: punctuation.definition.comment.begin.desktop}
+      end: \*/
+      endCaptures:
+        '0': {name: punctuation.definition.comment.end.desktop}
